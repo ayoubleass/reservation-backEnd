@@ -1,3 +1,3 @@
-Before using the api create a database and got to ./models/credentials.py to update the db credentials
+Create a database then go to ./models/credentials.py and update the password etc ..
 Pour lancer l'application:
 python -m api.v1.app
