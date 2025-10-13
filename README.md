@@ -10,11 +10,11 @@ Since you have the SQL script ready, simply run:
 run:
 bash
 cat .sql | mysql -u root -p
+update the file models/credentials.py with your MySQL credentials:
 
 run:
 bash
 python init.py
-
 After running the initialization, your database will have:
 
 ✅ Categories
