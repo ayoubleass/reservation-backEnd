@@ -10,9 +10,11 @@ bash
 # Import the database schema
   cat your_database_file.sql | mysql -u root -p
 
-1. First, Run the Database Initialization
-python init.py
-📋 What Gets Initialized
+run:
+bash
+python your_initialization_file.py
+
+
 After running the initialization, your database will have:
 
 ✅ Categories
