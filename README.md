@@ -6,14 +6,14 @@ VacationRent - Quick Setup Guide
 🗄️ Database Setup (Already Done)
 Since you have the SQL script ready, simply run:
 
+# Create database
+run:
 bash
-# Import the database schema
-  cat your_database_file.sql | mysql -u root -p
+cat .sql | mysql -u root -p
 
 run:
 bash
-python your_initialization_file.py
-
+python init.py
 
 After running the initialization, your database will have:
 
@@ -36,6 +36,7 @@ Cities for each country
 
 ✅ User Roles
 Traveler, Host, Admin
+
 
     
 Run app:
