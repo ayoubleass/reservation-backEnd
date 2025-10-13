@@ -34,7 +34,6 @@ def initialize_amenities():
 
 
 def initialize_countries(offset=0):
-    offset = 0;
     response = requests.get("https://api.first.org/data/v1/countries?offset={}".format(offset))
     if response.status_code == 200:
         r_body = response.json()
@@ -79,9 +78,9 @@ def add_more_catgories():
             storage.getSession().add(category)
     storage.getSession().commit()
 
-#initialize_categories()
-#initialize_amenities()
-#initialize_countries()
-# initialize_cities()
-# init_roles()
+initialize_categories()
+initialize_amenities()
+initialize_countries()
+initialize_cities()
+init_roles()
 add_more_catgories()
