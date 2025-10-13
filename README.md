@@ -10,6 +10,31 @@ bash
 # Import the database schema
   cat your_database_file.sql | mysql -u root -p
 
+1. First, Run the Database Initialization
+  python init.py
+📋 What Gets Initialized
+After running the initialization, your database will have:
 
+✅ Categories
+Basic: Maison, Appartement, Hotel, Cabane
+
+Extended: Iconiques, Campagne, Bord de mer, Piscines, Arctique, Patrimoine, Chambres, Camping, Montagnes, Lacs, Tendance, Luxe, Cabanes, Wow!, Plages, Tropical, Déserts, Îles, Châteaux, Design, Tiny houses, Historique, Vignobles, Ski, Fermes
+
+✅ Amenities
+Wifi, Parking, Swimming Pool, Gym
+
+Animaux acceptés, Vue panoramique sur la ville
+
+Espace de travail dédié, Vue sur le parc
+
+✅ Countries & Cities
+Real country data from API
+
+Cities for each country
+
+✅ User Roles
+Traveler, Host, Admin
+
+    
 Run app:
   python -m api.v1.app
