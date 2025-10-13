@@ -11,7 +11,7 @@ bash
   cat your_database_file.sql | mysql -u root -p
 
 1. First, Run the Database Initialization
-  python init.py
+python init.py
 📋 What Gets Initialized
 After running the initialization, your database will have:
 
