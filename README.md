@@ -53,9 +53,6 @@ Protected endpoints require a **JWT token**.
 - **Include Token:**  
 Authorization: Bearer <token>
 
-yaml
-Copier le code
-
 ---
 
 ## 🔑 Authentication Endpoints
