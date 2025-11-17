@@ -5,7 +5,7 @@ from datetime import datetime
 from sqlalchemy import Column, String, DateTime
 from models import credentials
 import uuid
-
+TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 Base = declarative_base()
 
 class BaseModel():
@@ -27,29 +27,31 @@ class BaseModel():
             if kwargs.get("updated_at", None) is None:
                 self.updated_at = datetime.utcnow()      
             if kwargs.get("updated_at", None) and type(self.updated_at) is str:
-                self.updated_at = datetime.strptime(kwargs["updated_at"], time)
+                self.updated_at = datetime.strptime(kwargs["updated_at"], TIME_FORMAT)
             if kwargs.get("created_at", None) and type(self.created_at) is str:
-                self.created_at = datetime.strptime(kwargs["created_at"], time)
-    
+                self.created_at = datetime.strptime(kwargs["created_at"], TIME_FORMAT)
+
     def to_dict(self):
-        time = "%Y-%m-%dT%H:%M:%S.%f"
+        """Convert instance into dict format"""
         new_dict = self.__dict__.copy()
-        new_dict = {key: value for key, value in new_dict.items() 
-                    if key in self.allowed_fields}
-        if "created_at" in new_dict:
-            new_dict["created_at"] = new_dict["created_at"].strftime(time)
-        if "updated_at" in new_dict:
-            new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
+
+        if '_sa_instance_state' in new_dict:
+            del new_dict['_sa_instance_state']
+
+        # Safe conversion for dates
+        if hasattr(self, 'created_at') and self.created_at is not None:
+            new_dict["created_at"] = self.created_at.strftime(TIME_FORMAT)
+        else:
+            new_dict["created_at"] = datetime.utcnow().strftime(TIME_FORMAT)
+            
+        if hasattr(self, 'updated_at') and self.updated_at is not None:
+            new_dict["updated_at"] = self.updated_at.strftime(TIME_FORMAT)
+        else:
+            new_dict["updated_at"] = datetime.utcnow().strftime(TIME_FORMAT)
+            
         new_dict["__class__"] = self.__class__.__name__
-        if "_sa_instance_state" in new_dict:
-            del new_dict["_sa_instance_state"]
-        return new_dict
+        return new_dict 
     
 
     def get(self, key):
         return getattr(self, key)
-        
-
-   
-
-

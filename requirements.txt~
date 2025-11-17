@@ -1,0 +1,6 @@
+
+
+
+
+
+pip install flask flask-cors flask-jwt-extended

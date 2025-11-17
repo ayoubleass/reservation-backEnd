@@ -41,8 +41,10 @@ def initialize_countries(offset=0):
         if offset > r_body.get('total'):
             print("Done!")
             return
+        if len(data) == 0:
+            return
         for key, value in data.items():
-            country = Country(id=key,name=value.get('country'),region =value.get('region')) 
+            country = Country(id=key, name=value.get('country'),region =value.get('region')) 
             storage.new(country).save()
     return initialize_countries(offset + len(data))
     
@@ -55,8 +57,9 @@ def initialize_cities():
         if r.status_code == 200:
             response_body = r.json()
             for city_name in response_body['data']:
-                city  = City(name=city_name, country_id= country.id)
-                storage.new(city).save()
+                #city  = City(name=city_name, country_id= country.id)
+                print(city_name)
+                #storage.new(city).save()
     print("Done!")
     
 
@@ -78,9 +81,9 @@ def add_more_catgories():
             storage.getSession().add(category)
     storage.getSession().commit()
 
-initialize_categories()
-initialize_amenities()
-initialize_countries()
-initialize_cities()
+# initialize_categories()
+# initialize_amenities()
+#initialize_countries()
+#initialize_cities()
 init_roles()
 add_more_catgories()

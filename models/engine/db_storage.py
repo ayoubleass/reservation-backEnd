@@ -26,7 +26,7 @@ class DB_Storage:
     
     def __init__(self):
         db_credtite = credentials.config_credentials["db"];
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.
                                       format(db_credtite["user"],
                                             db_credtite["pwd"],
                                             db_credtite["host"],

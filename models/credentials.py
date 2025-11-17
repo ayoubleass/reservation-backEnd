@@ -4,6 +4,6 @@ config_credentials = {
         "host" : "127.0.0.1",
         "port" : 3306,
         "user" : "root",
-        "pwd"  : "Zak/1017"
+        "pwd"  : "root"
     },
 }

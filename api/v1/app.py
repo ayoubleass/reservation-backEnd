@@ -11,8 +11,24 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from datetime import timedelta
 from helpers.helpers import *
-#from flask_api_key import APIKeyManager
+from models.base_model import BaseModel
+
+from flask.json.provider import DefaultJSONProvider
+
+
+class CustomJSONProvider(DefaultJSONProvider):
+    def default(self, obj):
+        if isinstance(obj, BaseModel):
+            return obj.to_dict()
+        elif isinstance(obj, datetime):
+            return obj.isoformat()
+        return super().default(obj)
+
+
 app = Flask(__name__)
+app.json = CustomJSONProvider(app)
+
+#from flask_api_key import APIKeyManager
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.register_blueprint(app_views)
 app.url_map.strict_slashes = False
